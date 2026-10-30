@@ -1,0 +1,18 @@
+{
+  "title": "",
+  "concept": "",
+  "credit": "",
+  "story": "",
+  "board": [],
+  "look": { "bg": "#101014", "accent": "#ffd400", "vignette": 0, "grain": 0 },
+  "arc": [["bar1", 0.3], ["end", 0.5]],
+  "shots": [
+    { "at": 0, "scene": "main", "in": "cut", "why": "" }
+  ],
+  "lyrics": {
+    "default": { "mode": "pop", "size": "big", "pos": "lower", "exit": "fade" },
+    "lines": {}
+  },
+  "moments": [],
+  "rules": []
+}
