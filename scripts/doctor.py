@@ -23,11 +23,13 @@ for t in ['ffmpeg', 'ffprobe']:
     if shutil.which(t): ok.append(t)
     else: bad.append((t, '装 ffmpeg 并放进 PATH（Windows：winget install Gyan.FFmpeg；macOS：brew install ffmpeg）'))
 
-# 分轨（推荐）
-try:
-    importlib.import_module('demucs'); ok.append('demucs')
-except Exception:
-    opt.append(('demucs（分轨，推荐）', 'python -m pip install demucs；或者自己用别的工具分好人声和鼓，放进一个文件夹用 --stems'))
+# 分轨（推荐）：装在别的 Python 里就用 MV_DEMUCS_PY 指过去，new_project.py --demucs 也用它
+dpy = os.environ.get('MV_DEMUCS_PY') or sys.executable
+r = subprocess.run([dpy, '-c', 'import demucs'], capture_output=True, text=True)
+if r.returncode == 0: ok.append('demucs')
+else:
+    opt.append(('demucs（分轨，推荐）', 'python -m pip install demucs（装在别的 Python 里就设 MV_DEMUCS_PY 指过去）；'
+                '或者自己用别的工具分好人声和鼓，放进一个文件夹用 --stems'))
 
 # 逐字对齐（强烈推荐）
 py = os.environ.get('MV_ALIGNER_PY') or sys.executable
